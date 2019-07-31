@@ -1,7 +1,6 @@
 
 import turtle
 import random #We'll need this later in the lab
-
 turtle.tracer(1,0) #This helps the turtle move more smoothly
 
 SIZE_X=800
@@ -22,7 +21,7 @@ food_stamps = []
 
 #Set up positions (x,y) of boxes that make up the snake
 snake = turtle.clone()
-snake.shape("square")
+snake.shape("circle")
 
 #Hide the turtle object (it's an arrow - we don't need to see it)
 turtle.hideturtle()
@@ -146,7 +145,8 @@ def make_food():
         ##                        position 
         ##2.WRITE YOUR CODE HERE: Add the food turtle's position to the food positions list
         ##3.WRITE YOUR CODE HERE: Add the food turtle's stamp to the food stamps list
-
+    
+colors = ['Blue','Green','Red','Yellow','Orange','purple']
 
 def move_snake():
     my_pos = snake.pos()
@@ -212,6 +212,7 @@ def move_snake():
         food_pos.pop(food_index) #Remove eaten food position
         food_stamps.pop(food_index) #Remove eaten food stamp
         print("You have eaten the food!")
+        snake.color(random.choice(colors))
     else:
         remove_tail()
         
@@ -229,5 +230,6 @@ def move_snake():
     if len(food_stamps) <= 4 :
     			make_food()
     #remove_tail()
+
     			
 move_snake()
