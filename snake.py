@@ -1,14 +1,33 @@
-
 import turtle
 import random #We'll need this later in the lab
 turtle.tracer(1,0) #This helps the turtle move more smoothly
 
-SIZE_X=800
-SIZE_Y=500
+SIZE_X=1000
+SIZE_Y=1000
 turtle.setup(SIZE_X, SIZE_Y) #Curious? It's the turtle window  
-                             #size.    
-turtle.penup()
 
+ssc=0000
+sh=600
+#sh=six hundred
+
+tx=turtle.clone()
+tx.penup()
+tx.goto(-100,300)
+tx.write('Snake Game!', font=("Arial", 30, "normal"))
+tx.hideturtle()
+
+
+border=turtle.clone()
+border.penup()
+border.goto(-300,300)
+border.pendown()
+border.goto(300,300)
+border.goto(300,-300)
+border.goto(-300,-300)
+border.goto(-300,300)
+border.hideturtle()
+
+turtle.penup()
 SQUARE_SIZE = 20
 START_LENGTH = 9
 TIME_STEP = 100
@@ -69,10 +88,10 @@ def up():
     snake.direction="Up" #Change direction to up
     print("You pressed the up key!")
 
-UP_EDGE = 250
-DOWN_EDGE = -250
-RIGHT_EDGE = 400
-LEFT_EDGE = -400
+UP_EDGE = 300
+DOWN_EDGE = -300
+RIGHT_EDGE = 300
+LEFT_EDGE = -300
 
 
 #2. Make functions down(), left(), and right() that change snake.direction
@@ -127,10 +146,10 @@ def make_food():
     #The screen positions go from -SIZE/2 to +SIZE/2
     #But we need to make food pieces only appear on game squares
     #So we cut up the game board into multiples of SQUARE_SIZE.
-    min_x=-int(SIZE_X/2/SQUARE_SIZE)+1
-    max_x=int(SIZE_X/2/SQUARE_SIZE)-1
-    min_y=-int(SIZE_Y/2/SQUARE_SIZE)+1
-    max_y=int(SIZE_Y/2/SQUARE_SIZE)-1
+    min_x=-int(sh/2/SQUARE_SIZE)+1
+    max_x=int(sh/2/SQUARE_SIZE)-1
+    min_y=-int(sh/2/SQUARE_SIZE)+1
+    max_y=int(sh/2/SQUARE_SIZE)-1
     
     #Pick a position that is a random multiple of SQUARE_SIZE
     food_x = random.randint(min_x,max_x)*SQUARE_SIZE
@@ -213,6 +232,7 @@ def move_snake():
         food_stamps.pop(food_index) #Remove eaten food stamp
         print("You have eaten the food!")
         snake.color(random.choice(colors))
+        ssc+1
     else:
         remove_tail()
         
@@ -230,6 +250,11 @@ def move_snake():
     if len(food_stamps) <= 4 :
     			make_food()
     #remove_tail()
+
+sc=turtle.clone()
+sc.penup()
+sc.hideturtle()
+sc.write(ssc, font=("Arial", 20, "normal"))
 
     			
 move_snake()
